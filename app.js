@@ -38,7 +38,7 @@ var influx = new Influx.InfluxDB({
 function recordTemperature() {
 	var currentTemp = ds18b20.temperatureSync('10-000802b59799');
 
-	winston.log('info', `Current temperature is: ${currentTemp}`);
+	winston.log('info', 'Current temperature is:' +currentTemp);
 
 	influx.writePoints([{
 		measurement: 'temperature',
@@ -49,8 +49,8 @@ function recordTemperature() {
 		fields: {
 			reading: currentTemp
 		}
-	}]).catch(err => {
-		winston.log('error', `Error saving data to InfluxDB! ${err.stack}`)
+	}]).catch(function(err) {
+		winston.log('error', 'Error saving data to InfluxDB!' + err.stack)
 	});
 };
 
