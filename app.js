@@ -1,14 +1,14 @@
 "use strict";
 
-var Influx = require('influx')
-var winston = require('winston');
-var ds18b20 = require('./ds18b20-hp');
+const Influx = require('influx')
+const winston = require('winston');
+const ds18b20 = require('./ds18b20-hp');
 
-var recordInterval = process.env.TEMP_RECORD_INTERVAL || 300;
-var deviceName = process.env.RESIN_DEVICE_UUID || 'pi';
-var deviceLocation = process.env.DEVICE_LOCATION || 'living_room';
-var influxDBHost = process.env.INFLUXDB_HOST || '192.168.1.11';
-var influxDBName = process.env.INFLUXDB_HOST || 'tado';
+const recordInterval = process.env.TEMP_RECORD_INTERVAL || 300;
+const deviceName = process.env.RESIN_DEVICE_UUID || 'pi';
+const deviceLocation = process.env.DEVICE_LOCATION || 'living_room';
+const influxDBHost = process.env.INFLUXDB_HOST || '192.168.1.11';
+const influxDBName = process.env.INFLUXDB_HOST || 'tado';
 
 winston.configure({
 	transports: [
@@ -20,7 +20,7 @@ winston.configure({
 
 winston.log('info', 'Reading temperature from DS1820');
 
-var influx = new Influx.InfluxDB({
+const influx = new Influx.InfluxDB({
 	host: influxDBHost,
 	database: influxDBName,
 	schema: [{
@@ -36,9 +36,9 @@ var influx = new Influx.InfluxDB({
 });
 
 function recordTemperature() {
-	var currentTemp = ds18b20.temperatureSync('10-000802b59799');
+	let currentTemp = ds18b20.temperatureSync('10-000802b59799');
 
-	winston.log('info', 'Current temperature is:' +currentTemp);
+	winston.log('info', `Current temperature is: ${currentTemp}`);
 
 	influx.writePoints([{
 		measurement: 'temperature',
@@ -49,11 +49,11 @@ function recordTemperature() {
 		fields: {
 			reading: currentTemp
 		}
-	}]).catch(function(err) {
-		winston.log('error', 'Error saving data to InfluxDB!' + err.stack)
+	}]).catch(err => {
+		winston.log('error', `Error saving data to InfluxDB! ${err.stack}`)
 	});
 };
 
-setInterval(function() {
+setInterval(() => {
 	recordTemperature();
 }, recordInterval * 1000);
