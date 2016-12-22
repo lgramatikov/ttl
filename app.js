@@ -8,7 +8,7 @@ const recordInterval = process.env.TEMP_RECORD_INTERVAL || 300;
 const deviceName = process.env.RESIN_DEVICE_UUID || 'pi';
 const deviceLocation = process.env.DEVICE_LOCATION || 'living_room';
 const influxDBHost = process.env.INFLUXDB_HOST || '192.168.1.11';
-const influxDBName = process.env.INFLUXDB_HOST || 'tado';
+const influxDBName = process.env.INFLUXDB_DB || 'tado';
 
 winston.configure({
 	transports: [
