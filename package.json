@@ -4,7 +4,7 @@
   "description": "temperature logger to keep an eye on tado",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "modprobe w1-gpio && modprobe w1-therm && node app.js"
   },
   "repository": {
     "type": "git",
