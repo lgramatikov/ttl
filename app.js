@@ -19,6 +19,8 @@ winston.configure({
 });
 
 winston.log('info', 'Reading temperature from DS1820');
+winston.log('info', `InfluxDB host: ${influxDBHost}`);
+winston.log('info', `InfluxDB database: ${influxDBName}`);
 
 const influx = new Influx.InfluxDB({
 	host: influxDBHost,
@@ -50,6 +52,7 @@ function recordTemperature() {
 			reading: currentTemp
 		}
 	}]).catch(err => {
+		winston.log('error', `Error saving data to InfluxDB! ${err}`)
 		winston.log('error', `Error saving data to InfluxDB! ${err.stack}`)
 	});
 };
