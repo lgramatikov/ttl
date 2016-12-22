@@ -14,6 +14,6 @@ By default resin.io image does not support 1-Wire. You can also test that in a c
 should return something if 1-Wire support has been enabled.
 
 To add support for 1-Wire, edit config.txt and add:
-```dtoverlay=w1-gpio```
+dtoverlay=w1-gpio
 
 See https://docs.resin.io/hardware/i2c-and-spi/#1-wire-and-digital-temperature-sensors for details.
