@@ -1,0 +1,26 @@
+{
+  "name": "ttl",
+  "version": "0.0.1",
+  "description": "temperature logger to keep an eye on tado",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lgramatikov/ttl.git"
+  },
+  "keywords": [
+    "ttl"
+  ],
+  "author": "lgramatikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lgramatikov/ttl/issues"
+  },
+  "homepage": "https://github.com/lgramatikov/ttl#readme",
+  "dependencies": {
+    "influx": "^5.0.0-alpha.4",
+    "winston": "^2.3.0"
+  }
+}
