@@ -1,10 +1,21 @@
 pipeline {
-  agent any
-  stages {
-    stage('Get Sources') {
-      steps {
-        ws(dir: 'aaaaa')
-      }
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-  }
 }
